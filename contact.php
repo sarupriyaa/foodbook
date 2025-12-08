@@ -1,15 +1,14 @@
 <?php
 session_start();
-
-// SHOW ERRORS
+// Show errors 
 error_reporting(E_ALL);
 ini_set("display_errors", 1);
 
-// SUCCESS & ERROR MESSAGES
+// Success and error messages
 $success = "";
 $error = "";
 
-// PHPMailer Imports
+// Php mailer imports
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 

@@ -250,7 +250,10 @@ $recipes = $conn->query("SELECT r.*, u.name AS creator
             <td><?= $r['category'] ?></td>
             <td><?= $r['creator'] ?: "Admin" ?></td>
             <td><?= ucfirst($r['status']) ?></td>
+<td>
+                <a href="edit_recipe.php?id=<?= $r['id'] ?>" class="edit-link">Edit</a>
 
+</td>
             <td>
                 <?php if ($r['status'] == "pending"): ?>
                     <a class="approve" href="?approve=<?= $r['id'] ?>">Approve</a> |

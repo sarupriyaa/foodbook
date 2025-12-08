@@ -1,7 +1,8 @@
 *{
-  box-sizing: border-box;
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
 }
 /*div1*/
 .div1 {
@@ -39,8 +40,6 @@
   text-shadow: 2px 2px 10px rgba(0,0,0,0.6);
   background: rgba(0,0,0,0.4);
 }
-
-/* ✨ Responsive Design */
 @media (max-width: 1024px) {
   .hero-title {
     font-size: 3rem;
@@ -101,7 +100,6 @@ img:hover {
   color: #555;
   max-width: 500px;
 }
-/* ✨ Responsive Design */
 @media (max-width: 900px) {
   .div2 {
     flex-direction: column;
@@ -176,7 +174,6 @@ img:hover {
   color: #555;
   max-width: 500px;
 }
-/* 📱 Responsive Design */
 @media (max-width: 900px) {
   .div3 {
     flex-direction: column;

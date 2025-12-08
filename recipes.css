@@ -1,3 +1,9 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
 /*recipes*/
 h1 {
     text-align: center;
@@ -6,10 +12,6 @@ h1 {
     font-weight: bold;
     color: #333;
 }
-
-/* ================================
-   RECIPE GRID
-================================*/
 .recipe-grid {
     width: 50%;
     margin: 30px auto;
@@ -17,10 +19,6 @@ h1 {
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 25px;
 }
-
-/* ================================
-   RECIPE CARD
-================================*/
 .recipe-card {
     background: #fff;
     border-radius: 12px;
@@ -31,65 +29,44 @@ h1 {
     box-shadow: 0 4px 15px rgba(0,0,0,0.1);
     transition: 0.3s ease-in-out;
 }
-
 .recipe-card:hover {
     transform: translateY(-8px);
     box-shadow: 0 10px 25px rgba(0,0,0,0.2);
 }
-
-/* ================================
-   IMAGE
-================================*/
 .recipe-card img {
     width: 100%;
     height: 180px;
     object-fit: cover;
 }
-
-/* ================================
-   TITLE / CATEGORY
-================================*/
 .recipe-card h3 {
     margin: 15px 10px 5px;
     color: #6a1b9a;
     font-size: 18px;
     text-decoration: underline;
 }
-
 .recipe-card p {
     color: #444;
     font-size: 14px;
     margin-top: 0;
 }
-
-/* ================================
-   NO RECIPES MESSAGE
-================================*/
 .no-recipes {
     text-align: center;
     font-size: 20px;
     margin-top: 40px;
     color: #777;
 }
-
-/* ================================
-   RESPONSIVE DESIGN
-================================*/
 @media (max-width: 768px) {
     h1 {
         font-size: 28px;
     }
 }
-
 @media (max-width: 480px) {
     .recipe-card h3 {
         font-size: 16px;
     }
-
     .recipe-card img {
         height: 150px;
     }
-
     h1 {
         font-size: 24px;
     }
@@ -105,10 +82,6 @@ h1 {
     border-radius: 16px;
     box-shadow: 0 8px 30px rgba(0,0,0,0.1);
 }
-
-/* ==========================================
-   BACK LINK
-========================================== */
 .back-link {
     display: inline-block;
     margin-bottom: 15px;
@@ -116,24 +89,15 @@ h1 {
     font-weight: bold;
     text-decoration: none;
 }
-
 .back-link:hover {
     text-decoration: underline;
 }
-
-/* ==========================================
-   TITLES
-========================================== */
 .recipe-title {
     font-size: 34px;
     font-weight: bold;
     color: #333;
     margin-bottom: 18px;
 }
-
-/* ==========================================
-   MAIN RECIPE IMAGE
-========================================== */
 .recipe-image {
     width: 100%;
     border-radius: 12px;
@@ -142,29 +106,17 @@ h1 {
     margin-bottom: 20px;
     box-shadow: 0 4px 12px rgba(0,0,0,0.15);
 }
-
-/* ==========================================
-   DESCRIPTION
-========================================== */
 .description {
     font-size: 18px;
     color: #444;
     margin-bottom: 30px;
 }
-
-/* ==========================================
-   SECTION TITLES
-========================================== */
 .section-title {
     margin-top: 30px;
     font-size: 26px;
     color: #6a1b9a;
     font-weight: bold;
 }
-
-/* ==========================================
-   INGREDIENT LIST
-========================================== */
 .ingredients-list li {
     margin-bottom: 8px;
     background: #f7ecff;
@@ -172,10 +124,6 @@ h1 {
     border-radius: 8px;
     border-left: 4px solid #6a1b9a;
 }
-
-/* ==========================================
-   STEPS LIST
-========================================== */
 .steps-list li {
     margin-bottom: 12px;
     padding: 10px;
@@ -183,17 +131,12 @@ h1 {
     border-radius: 8px;
     border-left: 4px solid #666;
 }
-
-/* ==========================================
-   VIDEO RESPONSIVE
-========================================== */
 .video-wrapper {
     position: relative;
     padding-bottom: 56.25%; /* 16:9 ratio */
     height: 0;
     margin-top: 20px;
 }
-
 .video-wrapper iframe {
     position: absolute;
     width: 100%;
@@ -201,10 +144,6 @@ h1 {
     border: none;
     border-radius: 12px;
 }
-
-/* ==========================================
-   MOBILE FRIENDLY
-========================================== */
 @media (max-width: 600px) {
     .recipe-title {
         font-size: 26px;
@@ -218,4 +157,92 @@ h1 {
         padding: 20px;
     }
 }
-
+.review-list {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 20px;
+}
+.review-list li {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 15px;
+    margin-bottom: 10px;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+}
+.review-list li strong {
+    display: block;
+    font-size: 1.1em;
+    color: #000;
+}
+.review-list li .stars {
+    color: orange;
+    font-size: 0.9em;
+    margin-left: 5px;
+}
+.review-list li p {
+    margin: 10px 0;
+}
+.review-list li small {
+    color: #777;
+    font-size: 0.8em;
+}
+.review-msg {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+    padding: 10px;
+    border-radius: 4px;
+    margin-bottom: 15px;
+}
+.review-form label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #555;
+}
+.review-form select,
+.review-form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-family: inherit;
+    font-size: 1em;
+}
+.btn-submit {
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 4px;
+    font-weight: bold;
+    color: #333;
+    transition: background-color 0.3s;
+    font-size: 18px;
+}
+.btn-submit:hover {
+    background-color: #e0e0e0;
+}
+@media (max-width: 600px) {
+    body {
+        padding: 10px;
+    }
+    .review-form select,
+    .review-form textarea,
+    .btn-submit {
+        width: 100%; /* Full width on mobile */
+        margin-bottom: 10px;
+    }
+    .review-list li {
+        padding: 10px;
+    }
+    .section-title {
+        font-size: 1.2em;
+    }
+}.avg-rating{
+    font-size: 20px;
+    margin-bottom: 20px;
+}

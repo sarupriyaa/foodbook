@@ -1,4 +1,9 @@
-/* Container */
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
 .profile-container {
     display: flex;
     gap: 30px;
@@ -6,8 +11,6 @@
     margin: auto;
     margin-top: 40px;
 }
-
-/* Profile Card */
 .profile-card {
     width: 300px;
     padding: 20px;
@@ -15,17 +18,14 @@
     box-shadow: 0 5px 15px rgba(0,0,0,0.1);
     border-radius: 12px;
 }
-
 .profile-card h2 {
     color: #ff7b30;
 }
-
 .profile-card p {
     margin: 10px 0;
     font-size: 15px;
 }
-
-.logout-btn, .btn-create, .btn-manage {
+.logout-btn, .btn-create, .btn-manage, .btn-edit {
     display: block;
     background: #ff7b30;
     color: white;
@@ -35,7 +35,6 @@
     border-radius: 6px;
     text-decoration: none;
 }
-
 .btn-manage { background: #007bff; }
 .btn-create { background: #28a745; }
 .logout-btn { background: #e63946; }
@@ -43,14 +42,11 @@
 .user-recipes {
     flex: 1;
 }
-
-/* Recipes Grid */
 .recipes-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
     gap: 20px;
 }
-
 .recipe-card {
     background: white;
     padding: 12px;
@@ -58,14 +54,12 @@
     box-shadow: 0 3px 10px rgba(0,0,0,0.1);
     text-align: center;
 }
-
 .recipe-card img {
     width: 100%;
     height: 150px;
     object-fit: cover;
     border-radius: 10px;
 }
-
 .view-btn, .btn-approve, .btn-delete {
     display: block;
     padding: 8px;
@@ -74,7 +68,6 @@
     text-decoration: none;
     border-radius: 6px;
 }
-
 .btn-approve { background: #28a745; }
 .btn-delete { background: #dc3545; }
 .view-btn { background: #007bff; }
@@ -83,18 +76,12 @@
     .profile-container {
         flex-direction: column;
     }
-
     .profile-card {
         width: 100%;
     }
 }
 
 /*create*/
-/* ===============================
-   CREATE RECIPE PAGE STYLING
-================================*/
-
-/* Main container */
 .admin-container {
     width: 90%;
     max-width: 900px;
@@ -105,12 +92,10 @@
     box-shadow: 0 5px 25px rgba(0,0,0,0.08);
     animation: fadeIn 0.4s ease-in-out;
 }
-
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(10px); }
     to { opacity: 1; transform: translateY(0); }
 }
-
 .admin-container h1 {
     text-align: center;
     color: #ff7b30;
@@ -118,21 +103,17 @@
     font-size: 30px;
     letter-spacing: 1px;
 }
-
-/* Form styling */
 .create-form {
     display: flex;
     flex-direction: column;
     gap: 18px;
 }
-
 .create-form label {
     font-weight: bold;
     font-size: 15px;
     color: #444;
     margin-bottom: 5px;
 }
-
 .create-form input,
 .create-form select,
 .create-form textarea {
@@ -145,7 +126,6 @@
     transition: all 0.3s ease;
     box-sizing: border-box;
 }
-
 .create-form input:focus,
 .create-form select:focus,
 .create-form textarea:focus {
@@ -154,13 +134,10 @@
     box-shadow: 0 0 0 3px rgba(255, 123, 48, 0.15);
     outline: none;
 }
-
 textarea {
     min-height: 120px;
     resize: vertical;
 }
-
-/* Submit button */
 .btn-create {
     display: block;
     width: 100%;
@@ -176,18 +153,14 @@ textarea {
     margin-top: 10px;
     transition: 0.3s ease;
 }
-
 .btn-create:hover {
     background: #e96a21;
     transform: translateY(-2px);
     box-shadow: 0 8px 15px rgba(255, 123, 48, 0.3);
 }
-
 .btn-create:active {
     transform: translateY(0px);
 }
-
-/* Success message */
 .success-message {
     background: #d4edda;
     color: #155724;
@@ -197,8 +170,6 @@ textarea {
     margin-bottom: 15px;
     font-size: 15px;
 }
-
-/* Error message */
 .error-message {
     background: #f8d7da;
     color: #721c24;
@@ -208,42 +179,31 @@ textarea {
     margin-bottom: 15px;
     font-size: 15px;
 }
-
-/* File input styling */
 input[type="file"] {
     padding: 8px;
     background: #fff;
     border: 1.5px solid #ddd;
     cursor: pointer;
 }
-
-/* Responsive layout */
 @media (max-width: 768px) {
     .admin-container {
         padding: 20px;
         width: 95%;
     }
-
     .admin-container h1 {
         font-size: 24px;
     }
-
     .btn-create {
         font-size: 16px;
     }
 }
 
 /*admin_dashboard*/
-/* =============================
-   Admin Dashboard Styling
-=============================== */
-
 .dashboard-container {
     width: 90%;
     max-width: 1200px;
     margin: 40px auto;
 }
-
 .dashboard-container h1 {
     text-align: center;
     font-size: 34px;
@@ -364,3 +324,4 @@ table th {
     from {opacity: 0; transform: translateY(10px);}
     to {opacity: 1; transform: translateY(0);}
 }
+
