@@ -4,41 +4,39 @@ include "db.php";
 
 $message = "";
 
-// If form submitted
+// When form submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-
-    $username = trim($_POST["username"]);
+    $name = trim($_POST["name"]);
     $email = trim($_POST["email"]);
+    $address = trim($_POST["address"]);
     $password = trim($_POST["password"]);
-    $confirmPassword = trim($_POST["confirmPassword"]);
+    $confirm = trim($_POST["confirmPassword"]);
 
     // Check password match
-    if ($password !== $confirmPassword) {
-        $message = "❌ Passwords do not match!";
+    if ($password !== $confirm) {
+        $message = "<div class='message error'>❌ Passwords do not match!</div>";
     } else {
-        
-        // Check if email exists
-        $check = $conn->prepare("SELECT id FROM users WHERE email = ?");
-        $check->bind_param("s", $email);
-        $check->execute();
-        $result = $check->get_result();
+        // Check if email already exists
+        $stmt = $conn->prepare("SELECT id FROM users WHERE email = ?");
+        $stmt->bind_param("s", $email);
+        $stmt->execute();
+        $exists = $stmt->get_result();
 
-        if ($result->num_rows > 0) {
-            $message = "❌ Email already registered!";
+        if ($exists->num_rows > 0) {
+            $message = "<div class='message error'>❌ Email already registered!</div>";
         } else {
-
             // Hash password
-            $hashedPass = password_hash($password, PASSWORD_DEFAULT);
+            $hashed = password_hash($password, PASSWORD_DEFAULT);
 
             // Insert user
-            $insert = $conn->prepare("INSERT INTO users (name, email, password, role) VALUES (?, ?, ?, 'user')");
-            $insert->bind_param("sss", $username, $email, $hashedPass);
+            $stmt = $conn->prepare("INSERT INTO users (name, email, address, password, role) VALUES (?, ?, ?, ?, 'user')");
+            $stmt->bind_param("ssss", $name, $email, $address, $hashed);
 
-            if ($insert->execute()) {
+            if ($stmt->execute()) {
                 header("Location: login.php?registered=1");
                 exit();
             } else {
-                $message = "❌ Registration failed!";
+                $message = "<div class='message error'>❌ Registration failed!</div>";
             }
         }
     }
@@ -46,55 +44,41 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 ?>
 <!DOCTYPE html>
 <html>
-
 <head>
-    <title>Register - RecipeBook</title>
-    <link rel="stylesheet" href="login.css"> <!-- SAME DESIGN AS LOGIN -->
+    <title>Register</title>
+    <link rel="stylesheet" href="login.css">
 </head>
-
 <body>
-
-<?php include "navbar.php"; ?>
-
-<div class="login-container">  <!-- same wrapper -->
-
-    <div class="login-box">  <!-- same animated box -->
-
+<?php include "navbar.php";?>
+<div class="login-container">
+    <div class="login-box">
         <h2>Create Account</h2>
-        <p class="subtitle">Join RecipeBook for free</p>
-
-        <!-- ERROR MESSAGE -->
-        <?php if (!empty($message)) { ?>
-            <div class="message error"><?= $message ?></div>
-        <?php } ?>
-
+        <p class="subtitle">Join RecipeBook today!</p>
+        <?= $message ?>
         <form method="POST">
 
-            <label>Username</label>
-            <input type="text" name="username" placeholder="Choose a username" required>
+            <label>Name</label>
+            <input type="text" name="name" required>
 
             <label>Email</label>
-            <input type="email" name="email" placeholder="Enter your email" required>
+            <input type="email" name="email" required>
+
+            <label>Address</label>
+            <input type="text" name="address" required>
 
             <label>Password</label>
-            <input type="password" name="password" placeholder="Create a password" required>
+            <input type="password" name="password" required>
 
             <label>Confirm Password</label>
-            <input type="password" name="confirmPassword" placeholder="Confirm password" required>
+            <input type="password" name="confirmPassword" required>
 
-            <button type="submit" class="btn-submit">Create Account</button>
-
+            <button type="submit" class="btn-submit">Register</button>
         </form>
-
         <div class="login-bottom">
-            Already have an account?
-            <a href="login.php">Login</a>
+            Already have an account? <a href="login.php">Login</a>
         </div>
-
     </div>
 </div>
-
-<?php include 'footer.php'; ?>
-
+<?php include "footer.php";?>
 </body>
 </html>

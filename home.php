@@ -1,6 +1,10 @@
 <?php
 ?>
-
+<style>
+    .hero-text h1{
+        color:white;
+    }
+</style>
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,7 +26,7 @@
     <div class="div2">
         <div class="sub1">
             <h3 class="hero-title2">The easiest way to organize your recipes</h3>
-            <p class="hero-text1">RecipeBook is a quick and easy way to collect, organize and share your favorite recipes across your devices.</p>
+            <p class="hero-text1">RecipeBook is a quick and easy way to collect, organize your favorite recipes across your devices.</p>
         </div>
         <div class="sub2">
             <img class="img1" src="https://cdn.prod.website-files.com/63bb7fe09d70bb7dc8e86719/63c4e43459c35a2889466e8d_776-x-528-Add.webp">

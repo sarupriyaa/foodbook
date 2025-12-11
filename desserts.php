@@ -26,7 +26,6 @@ $result = $conn->query($sql);
             margin-top: 20px;
             font-size: 40px;
         }
-
         .recipe-grid {
             display: flex;
             flex-wrap: wrap;
@@ -34,7 +33,6 @@ $result = $conn->query($sql);
             justify-content: center;
             padding: 30px;
         }
-
         .recipe-card {
             width: 260px;
             background: white;
@@ -43,24 +41,20 @@ $result = $conn->query($sql);
             box-shadow: 0 3px 10px rgba(0,0,0,0.1);
             transition: 0.2s;
         }
-
         .recipe-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 6px 18px rgba(0,0,0,0.2);
         }
-
         .recipe-card img {
             width: 100%;
             height: 160px;
             object-fit: cover;
             border-radius: 10px;
         }
-
         .recipe-card h3 {
             font-size: 20px;
             margin-top: 12px;
         }
-
         .recipe-card p {
             font-size: 14px;
             color: #777;
@@ -74,7 +68,6 @@ $result = $conn->query($sql);
 <div class="recipe-grid">
 <?php
 if ($result->num_rows > 0) {
-
     while ($row = $result->fetch_assoc()) {
         echo "
         <div class='recipe-card'>
@@ -85,12 +78,10 @@ if ($result->num_rows > 0) {
             </a>
         </div>";
     }
-
 } else {
     echo "<p>No dessert recipes found.</p>";
 }
 ?>
-
 </div>
 <?php include 'footer.php'; ?>
 </body>

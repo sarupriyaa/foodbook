@@ -5,7 +5,6 @@ if (session_status() === PHP_SESSION_NONE) {
 ?>
 <link rel="stylesheet" href="style.css">
 <script src="navbar.js" defer></script>
-
 <nav class="navbar" id="navbar">
     <div class="logo">
         <a href="home.php">RecipeBook</a>

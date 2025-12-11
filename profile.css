@@ -80,6 +80,50 @@
         width: 100%;
     }
 }
+/*edit_profile*/
+.profile-wrapper {
+    max-width: 900px;
+    margin: 120px auto 40px; /* pushes down below navbar */
+    background: #fff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+}
+.profile-wrapper label {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    display: block;
+}
+.profile-wrapper input {
+    width: 100%;
+    padding: 14px;
+    font-size: 16px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    margin-bottom: 25px;
+}
+.btn-update {
+    background: #ff8c42;
+    border: none;
+    padding: 14px 30px;
+    font-size: 16px;
+    border-radius: 8px;
+    color: white;
+    cursor: pointer;
+}
+.btn-update:hover {
+    background: #e6762f;
+}
+.back-link {
+    margin-left: 20px;
+    font-size: 16px;
+    color: #007bff;
+    text-decoration: none;
+}
+.back-link:hover {
+    text-decoration: underline;
+}
 
 /*create*/
 .admin-container {
@@ -211,14 +255,11 @@ input[type="file"] {
     color: #ff7b30;
     margin-bottom: 30px;
 }
-
-/* Stat Cards */
 .stats-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
     gap: 20px;
 }
-
 .stat-card {
     background: #fff;
     padding: 20px;
@@ -227,22 +268,18 @@ input[type="file"] {
     box-shadow: 0 4px 15px rgba(0,0,0,0.1);
     animation: fadeIn 0.4s ease;
 }
-
 .stat-card h2 {
     font-size: 32px;
     margin: 0;
     color: #222;
 }
-
 .stat-card p {
     color: #666;
     margin-top: 5px;
 }
-
 .stat-card.pending {
     border-left: 5px solid #e63946;
 }
-
 .btn-small {
     display: inline-block;
     margin-top: 10px;
@@ -253,44 +290,35 @@ input[type="file"] {
     font-size: 14px;
     text-decoration: none;
 }
-
-/* Users Table */
 .table-wrapper {
     margin-top: 25px;
     overflow-x: auto;
 }
-
 table {
     width: 100%;
     border-collapse: collapse;
     margin-bottom: 40px;
 }
-
 table th, table td {
     border: 1px solid #ddd;
     padding: 12px;
     font-size: 15px;
     background: #fff;
 }
-
 table th {
     background: #ff7b30;
     color: white;
 }
-
 .section-title {
     font-size: 26px;
     margin: 20px 0;
     color: #ff7b30;
 }
-
-/* Recipe Cards */
 .recipes-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
     gap: 20px;
 }
-
 .recipe-card {
     background: #fff;
     border-radius: 12px;
@@ -298,14 +326,12 @@ table th {
     padding: 10px;
     text-align: center;
 }
-
 .recipe-card img {
     width: 100%;
     height: 150px;
     object-fit: cover;
     border-radius: 12px;
 }
-
 .btn-view {
     display: block;
     margin-top: 10px;
@@ -315,13 +341,9 @@ table th {
     border-radius: 8px;
     text-decoration: none;
 }
-
 .pending { color: #e63946; }
 .approved { color: #2a9d8f; }
-
-/* Animations */
 @keyframes fadeIn {
     from {opacity: 0; transform: translateY(10px);}
     to {opacity: 1; transform: translateY(0);}
 }
-

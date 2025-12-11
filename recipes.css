@@ -12,11 +12,12 @@ h1 {
     font-weight: bold;
     color: #333;
 }
-.recipe-grid {
-    width: 50%;
+.grid {
+    width: 100%;
     margin: 30px auto;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    /* flex-wrap: wrap; */
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
     gap: 25px;
 }
 .recipe-card {
@@ -98,6 +99,11 @@ h1 {
     color: #333;
     margin-bottom: 18px;
 }
+.avg-rating {
+    font-size: 20px;
+    margin-bottom: 20px;
+    color: #ff9800;
+}
 .recipe-image {
     width: 100%;
     border-radius: 12px;
@@ -111,81 +117,50 @@ h1 {
     color: #444;
     margin-bottom: 30px;
 }
-.section-title {
+.recipe-container h2 {
     margin-top: 30px;
     font-size: 26px;
     color: #6a1b9a;
     font-weight: bold;
 }
-.ingredients-list li {
+.recipe-container ul li {
     margin-bottom: 8px;
     background: #f7ecff;
     padding: 8px 12px;
     border-radius: 8px;
     border-left: 4px solid #6a1b9a;
 }
-.steps-list li {
+.recipe-container ol li {
     margin-bottom: 12px;
     padding: 10px;
     background: #f0f0f0;
     border-radius: 8px;
     border-left: 4px solid #666;
 }
-.video-wrapper {
-    position: relative;
-    padding-bottom: 56.25%; /* 16:9 ratio */
-    height: 0;
-    margin-top: 20px;
-}
-.video-wrapper iframe {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    border: none;
-    border-radius: 12px;
-}
-@media (max-width: 600px) {
-    .recipe-title {
-        font-size: 26px;
-    }
-
-    .description {
-        font-size: 16px;
-    }
-
-    .recipe-container {
-        padding: 20px;
-    }
-}
-.review-list {
-    list-style: none;
-    padding: 0;
-    margin-bottom: 20px;
-}
-.review-list li {
+.review-item {
     background-color: #f9f9f9;
     border: 1px solid #ddd;
     border-radius: 5px;
     padding: 15px;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
     box-shadow: 0 1px 2px rgba(0,0,0,0.05);
 }
-.review-list li strong {
+.review-item strong {
     display: block;
     font-size: 1.1em;
     color: #000;
+    margin-bottom: 3px;
 }
-.review-list li .stars {
+.review-rating {
     color: orange;
-    font-size: 0.9em;
-    margin-left: 5px;
+    margin-bottom: 10px;
 }
-.review-list li p {
-    margin: 10px 0;
+.review-text {
+    margin-bottom: 8px;
 }
-.review-list li small {
-    color: #777;
+.review-date {
     font-size: 0.8em;
+    color: #777;
 }
 .review-msg {
     background-color: #d4edda;
@@ -197,52 +172,53 @@ h1 {
 }
 .review-form label {
     display: block;
+    margin-top: 15px;
     margin-bottom: 5px;
     font-weight: bold;
-    color: #555;
 }
 .review-form select,
 .review-form textarea {
     width: 100%;
     padding: 10px;
-    margin-bottom: 15px;
     border: 1px solid #ccc;
     border-radius: 4px;
-    box-sizing: border-box;
+    resize: vertical;
     font-family: inherit;
     font-size: 1em;
+    margin-bottom: 10px;
 }
-.btn-submit {
-    background-color: #f0f0f0;
-    border: 1px solid #ccc;
-    padding: 10px 15px;
+.review-form button {
+    background-color: #6a1b9a;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 6px;
     cursor: pointer;
-    border-radius: 4px;
+    font-size: 16px;
     font-weight: bold;
-    color: #333;
-    transition: background-color 0.3s;
-    font-size: 18px;
 }
-.btn-submit:hover {
-    background-color: #e0e0e0;
+.review-form button:hover {
+    background-color: #5b1786;
+}
+iframe {
+    width: 100%;
+    height: 450px;
+    border: none;
+    border-radius: 12px;
+    margin-top: 20px;
 }
 @media (max-width: 600px) {
-    body {
-        padding: 10px;
+    .recipe-title {
+        font-size: 26px;
     }
-    .review-form select,
-    .review-form textarea,
-    .btn-submit {
-        width: 100%; /* Full width on mobile */
-        margin-bottom: 10px;
+    .description {
+        font-size: 16px;
     }
-    .review-list li {
-        padding: 10px;
+    .recipe-container {
+        padding: 20px;
     }
-    .section-title {
-        font-size: 1.2em;
+    iframe {
+        height: 250px;
     }
-}.avg-rating{
-    font-size: 20px;
-    margin-bottom: 20px;
 }
+

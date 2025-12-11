@@ -5,9 +5,7 @@ $conn = new mysqli("localhost", "root", "", "recipebook");
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
-
 $message = "";
-
 if (isset($_GET["token"])) {
     $token = $_GET["token"];
 
@@ -39,7 +37,6 @@ if (isset($_GET["token"])) {
         <div class="login-box">
             <h2>Reset Password</h2>
             <?php if (!empty($message)) { echo "<div class='message'>$message</div>"; } ?>
-
             <form method="POST" action="">
                 <label>New Password</label>
                 <input type="password" name="password" required>

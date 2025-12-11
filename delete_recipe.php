@@ -17,7 +17,6 @@ if (!isset($_GET['id'])) {
     header("Location: profile.php");
     exit();
 }
-
 $recipe_id = $_GET['id'];
 
 // Check ownership before deletion
@@ -34,7 +33,6 @@ if ($recipe && ($recipe['user_id'] == $user_id || $role === 'admin')) {
     $delete_stmt->execute();
     $delete_stmt->close();
 }
-
 $check_stmt->close();
 $conn->close();
 

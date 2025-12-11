@@ -14,7 +14,6 @@ if ($conn->connect_error) die("DB Error");
 $message = "";
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-
     $title = $_POST["title"];
     $category = $_POST["category"];
     $description = $_POST["description"];
@@ -22,10 +21,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $steps = $_POST["steps"];
     $nutrition = $_POST["nutrition"];
     $video_url = $_POST["video_url"];
-
     $user_id = $_SESSION["user_id"];
 
-    // IMAGE UPLOAD
+    // image upload
     $image_path = "";
     if (!empty($_FILES["image"]["name"])) {
         $image_name = time() . "_" . basename($_FILES["image"]["name"]);
@@ -34,18 +32,16 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         move_uploaded_file($_FILES["image"]["tmp_name"], $image_path);
     }
 
-    // INSERT QUERY WITH PENDING STATUS
+    // insert query with pending status
     $stmt = $conn->prepare("
         INSERT INTO recipes 
         (title, category, image, description, ingredients, steps, video_url, nutrition, status, user_id)
         VALUES (?, ?, ?, ?, ?, ?, ?, ?, 'pending', ?)
     ");
-
     $stmt->bind_param(
         "ssssssssi",
         $title, $category, $image_path, $description, $ingredients, $steps, $video_url, $nutrition, $user_id
     );
-
     if ($stmt->execute()) {
         $message = "✔ Recipe submitted! Waiting for admin approval.";
     } else {
@@ -60,20 +56,15 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     <title>Create Recipe</title>
     <link rel="stylesheet" href="profile.css">
 </head>
-
 <body>
-
 <?php include "navbar.php"; ?>
-
 <div class="admin-container">
     <h1>Create New Recipe</h1>
-
     <?php if ($message): ?>
         <p style="color: green; font-weight: bold;"><?= $message ?></p>
     <?php endif; ?>
 
     <form method="POST" enctype="multipart/form-data" class="create-form">
-
         <label>Recipe Title</label>
         <input type="text" name="title" required>
 
@@ -107,8 +98,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         <button type="submit" class="btn-create">Submit for Approval</button>
     </form>
 </div>
-
 <?php include "footer.php"; ?>
-
 </body>
 </html>

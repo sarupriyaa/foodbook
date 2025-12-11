@@ -1,4 +1,4 @@
-// MOBILE MENU 
+// mobile menu
 const hamburger = document.getElementById("hamburger");
 const navLinks = document.getElementById("nav-links");
 
@@ -6,7 +6,7 @@ hamburger.addEventListener("click", () => {
     navLinks.classList.toggle("show");
 });
 
-// DROPDOWN MENU
+// dropdown menu
 const dropdownBtn = document.querySelector(".dropdown-btn");
 const dropdownMenu = document.querySelector(".dropdown-menu");
 
@@ -20,7 +20,7 @@ document.addEventListener("click", () => {
     dropdownMenu.classList.remove("show");
 });
 
-// NAVBAR SCROLL SHADOW 
+// navbar scroll shadow
 const navbar = document.getElementById("navbar");
 
 window.addEventListener("scroll", () => {

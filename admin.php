@@ -1,6 +1,6 @@
 <?php
 session_start();
-require "db.php"; // <-- Your database connection file
+require "db.php"; //Your database connection file
 
 if ($_SESSION['user']['role'] !== 'admin') {
     echo "Access Denied — Admins Only!";
@@ -20,17 +20,12 @@ if ($_SESSION['user']['role'] !== 'admin') {
 }
 ?>
 
-<?php include "navbar.php"; ?>  <!-- Include your navbar -->
-
+<?php include "navbar.php"; ?>
 <link rel="stylesheet" href="admin.css">
 <?php include "navbar.php"; ?>
-
 <div class="admin-container">
-
     <h1 class="admin-title">Admin Dashboard</h1>
-
     <div class="admin-cards">
-
         <div class="card">
             <h2>Total Users</h2>
             <p>
@@ -40,7 +35,6 @@ if ($_SESSION['user']['role'] !== 'admin') {
                 ?>
             </p>
         </div>
-
         <div class="card">
             <h2>Total Recipes</h2>
             <p>
@@ -50,16 +44,12 @@ if ($_SESSION['user']['role'] !== 'admin') {
                 ?>
             </p>
         </div>
-
         <div class="card">
             <h2>Categories</h2>
             <p>5</p>
         </div>
-
     </div>
-
     <h2 class="section-title">Manage Users</h2>
-
     <table class="admin-table">
         <tr>
             <th>ID</th>
@@ -67,10 +57,8 @@ if ($_SESSION['user']['role'] !== 'admin') {
             <th>Role</th>
             <th>Action</th>
         </tr>
-
         <?php
         $result = $conn->query("SELECT * FROM users ORDER BY id DESC");
-
         while ($row = $result->fetch_assoc()) { ?>
             <tr>
                 <td><?= $row['id']; ?></td>

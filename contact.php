@@ -117,12 +117,12 @@ $message";
     <p><strong>Address:</strong> Tilottama-4, Rupandehi, Nepal</p>
 </div>
 
-<div class="map-box">
+<!-- <div class="map-box">
     <iframe 
         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.019505034529!2d-122.41941528468138!3d37.774929779759744!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8085808c1e32c7bd%3A0xced3ba0b04b2d30!2sFood%20City!5e0!3m2!1sen!2sus!4v1700000000000"
         width="100%" height="350" style="border:0;" allowfullscreen loading="lazy">
     </iframe>
-</div>
+</div> -->
 
 <?php include "footer.php"; ?>
 
