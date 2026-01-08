@@ -13,13 +13,7 @@ if (session_status() === PHP_SESSION_NONE) {
     <ul class="nav-links" id="nav-links">
         <li><a href="home.php">Home</a></li>
         <li><a href="about.php">About</a></li>
-        
-        <?php if (!isset($_SESSION["role"])): ?>
-            <li><a href="login.php" class="btn">Sign In</a></li>
-            <li><a href="register.php" class="btn primary">Sign Up</a></li>
-        <?php else: ?>
-            <?php if ($_SESSION["role"] == "user"): ?>
-                <li class="dropdown">
+        <li class="dropdown">
                     <a href="javascript:void(0)" class="dropdown-btn">Recipes ▼</a>
                     <ul class="dropdown-menu">
                         <li><a href="recipes.php">All Recipes</a></li>
@@ -29,6 +23,11 @@ if (session_status() === PHP_SESSION_NONE) {
                         <li><a href="desserts.php">Desserts</a></li>
                     </ul>
                 </li>
+        <?php if (!isset($_SESSION["role"])): ?>
+            <li><a href="login.php" class="btn">Sign In</a></li>
+            <li><a href="register.php" class="btn primary">Sign Up</a></li>
+        <?php else: ?>
+            <?php if ($_SESSION["role"] == "user"): ?>
                 <li><a href="create.php">Create</a></li>
             <?php endif; ?>
 

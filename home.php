@@ -4,6 +4,12 @@
     .hero-text h1{
         color:white;
     }
+    .hero-title{
+        font-size:5rem;
+        text-shadow: 2px 2px 10px rgba(0,0,0,0.6);
+        background: rgba(0,0,0,0.4);
+
+    }
 </style>
 <!DOCTYPE html>
 <html>

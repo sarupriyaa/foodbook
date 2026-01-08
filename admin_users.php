@@ -22,6 +22,11 @@ if (isset($_GET["delete"])) {
 
 // FETCH USERS
 $users = $conn->query("SELECT * FROM users ORDER BY id DESC");
+
+$messages = $conn->query("
+    SELECT * FROM contact_messages
+    ORDER BY id DESC
+");
 ?>
 <!DOCTYPE html>
 <html>
@@ -65,6 +70,28 @@ $users = $conn->query("SELECT * FROM users ORDER BY id DESC");
             </tr>
             <?php endwhile; ?>
 
+        </table>
+<!-- ================= CONTACT MESSAGES ================= -->
+        <h2 style="margin-top:40px;">📨 Contact Messages</h2>
+
+        <table class="table">
+            <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Message</th>
+                <th>Date</th>
+            </tr>
+
+            <?php $sn = 1; while ($m = $messages->fetch_assoc()): ?>
+                <tr>
+                    <td><?= $sn++ ?></td>
+                    <td><?= htmlspecialchars($m['name']) ?></td>
+                    <td><?= htmlspecialchars($m['email']) ?></td>
+                    <td><?= nl2br(htmlspecialchars($m['message'])) ?></td>
+                    <td><?= $m['created_at'] ?? "" ?></td>
+                </tr>
+            <?php endwhile; ?>
         </table>
 
     </main>
