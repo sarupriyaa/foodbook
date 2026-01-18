@@ -26,6 +26,6 @@ if ($stmt->affected_rows > 0) {
 }
 $stmt->close();
 $conn->close();
-header("Location: profile.php");
+header("Location: recipes.php");
 exit();
 ?>

@@ -23,27 +23,21 @@ if (isset($_GET["delete"])) {
 // FETCH USERS
 $users = $conn->query("SELECT * FROM users ORDER BY id DESC");
 
-$messages = $conn->query("
-    SELECT * FROM contact_messages
-    ORDER BY id DESC
-");
+// CONTACT MESSAGES
+$messages = $conn->query("SELECT * FROM contact_messages ORDER BY id DESC");
 ?>
 <!DOCTYPE html>
 <html>
 <head>
     <title>Manage Users</title>
     <link rel="stylesheet" href="footer.css">
+    <!-- <link rel="stylesheet" href="admin-pages.css"> -->
 </head>
-
 <body>
-
-<div class="admin-container">
-
+<div class="admin-users-page">
     <?php include "admin_sidebar.php"; ?>
-
-    <main class="content">
+    <main class="admin-users-content">
         <h1>👥 Manage Users</h1>
-
         <table class="table">
             <tr>
                 <th>Name</th>
@@ -55,24 +49,23 @@ $messages = $conn->query("
 
             <?php while ($u = $users->fetch_assoc()): ?>
             <tr>
-                <td><?= $u['name'] ?></td>
-                <td><?= $u['email'] ?></td>
-                <td><?= $u['address'] ?></td>
+                <td><?= htmlspecialchars($u['name']) ?></td>
+                <td><?= htmlspecialchars($u['email']) ?></td>
+                <td><?= htmlspecialchars($u['address']) ?></td>
                 <td><?= ucfirst($u['role']) ?></td>
-
                 <td>
                     <?php if ($u['role'] !== 'admin'): ?>
-                        <a href="?delete=<?= $u['id'] ?>" class="delete">Delete</a>
+                        <a href="?delete=<?= $u['id'] ?>" class="delete"
+                           onclick="return confirm('Delete this user?')">Delete</a>
                     <?php else: ?>
                         <span style="color:gray;">Admin</span>
                     <?php endif; ?>
                 </td>
             </tr>
             <?php endwhile; ?>
-
         </table>
-<!-- ================= CONTACT MESSAGES ================= -->
-        <h2 style="margin-top:40px;">📨 Contact Messages</h2>
+
+        <h2>📨 Contact Messages</h2>
 
         <table class="table">
             <tr>
@@ -84,18 +77,19 @@ $messages = $conn->query("
             </tr>
 
             <?php $sn = 1; while ($m = $messages->fetch_assoc()): ?>
-                <tr>
-                    <td><?= $sn++ ?></td>
-                    <td><?= htmlspecialchars($m['name']) ?></td>
-                    <td><?= htmlspecialchars($m['email']) ?></td>
-                    <td><?= nl2br(htmlspecialchars($m['message'])) ?></td>
-                    <td><?= $m['created_at'] ?? "" ?></td>
-                </tr>
+            <tr>
+                <td><?= $sn++ ?></td>
+                <td><?= htmlspecialchars($m['name']) ?></td>
+                <td><?= htmlspecialchars($m['email']) ?></td>
+                <td><?= nl2br(htmlspecialchars($m['message'])) ?></td>
+                <td><?= $m['created_at'] ?? '' ?></td>
+            </tr>
             <?php endwhile; ?>
         </table>
 
     </main>
 </div>
 
+<?php include "footer.php"; ?>
 </body>
 </html>

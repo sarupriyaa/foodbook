@@ -72,23 +72,17 @@ $avg_rating = ($avg_row['avg_rating'] !== null) ? round($avg_row['avg_rating'], 
     <link rel="stylesheet" href="recipes.css">
 </head>
 <body>
-
 <?php include "navbar.php"; ?>
-
 <div class="recipe-container">
-
     <a href="<?= $back_link ?>" class="back-link">← Back to Recipes</a>
 
     <h1 class="recipe-title"><?= htmlspecialchars($recipe['title']) ?></h1>
-
     <p class="avg-rating">
-        ⭐ Average Rating: <?= $avg_rating ?? "No ratings yet" ?>
+        Average Rating: <?= $avg_rating ?? "No ratings yet" ?>
     </p>
-
     <img src="http://localhost:8080/foodbook/<?= $recipe['image'] ?>"
          class="recipe-image"
          alt="<?= htmlspecialchars($recipe['title']) ?>">
-
     <p class="description">
         <?= nl2br(htmlspecialchars($recipe['description'])) ?>
     </p>
@@ -115,7 +109,6 @@ $avg_rating = ($avg_row['avg_rating'] !== null) ? round($avg_row['avg_rating'], 
     </ul>
 
     <h2 class="section-title">Customer Reviews</h2>
-
     <?php if ($reviews->num_rows == 0): ?>
         <p>No reviews yet.</p>
     <?php else: ?>
@@ -159,13 +152,10 @@ $avg_rating = ($avg_row['avg_rating'] !== null) ? round($avg_row['avg_rating'], 
     <?php endif; ?>
 
     <h2 class="section-title">Video</h2>
-
     <div class="video-wrapper">
         <iframe src="<?= htmlspecialchars($recipe['video_url']) ?>" allowfullscreen></iframe>
     </div>
-
 </div>
-
 <?php include "footer.php"; ?>
 </body>
 </html>

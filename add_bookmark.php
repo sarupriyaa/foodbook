@@ -14,5 +14,5 @@ $recipe_id = intval($_GET['id']);
 // Insert bookmark
 $conn->query("INSERT IGNORE INTO bookmarks (user_id, recipe_id) VALUES ($user_id, $recipe_id)");
 
-header("Location: profile.php");
+header("Location: recipes.php");
 ?>

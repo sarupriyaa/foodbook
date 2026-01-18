@@ -1,3 +1,4 @@
+/*admin*/
 body {
     margin: 0;
     font-family: 'Poppins', sans-serif;
@@ -58,63 +59,53 @@ body {
     display:flex;
     min-height:100vh;
 }
-
 .sidebar{
     width:230px;
     background:#1f2937;
     color:#fff;
     padding:20px;
 }
-
 .sidebar a{
     display:block;
     color:#fff;
     padding:8px 0;
     text-decoration:none;
 }
-
 .sidebar a.active{
     font-weight:bold;
     text-decoration:underline;
 }
-
 .content{
     flex:1;
     padding:20px;
 }
-
 .stats-box{
     display:grid;
     grid-template-columns:repeat(3,1fr);
     gap:15px;
     margin-bottom:25px;
 }
-
 .stat{
     background:#eef2ff;
     padding:15px;
     border-radius:10px;
     text-align:center;
 }
-
 .table{
     width:100%;
     border-collapse:collapse;
     margin-bottom:30px;
 }
-
 .table th,
 .table td{
     border:1px solid #ddd;
     padding:10px;
 }
-
 .thumb{
     width:120px;
     border-radius:6px;
     object-fit:cover;
 }
-
 .approve{ color:green; }
 .delete{ color:red; }
 

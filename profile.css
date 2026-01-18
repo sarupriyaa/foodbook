@@ -83,7 +83,7 @@
 /*edit_profile*/
 .profile-wrapper {
     max-width: 900px;
-    margin: 120px auto 40px; /* pushes down below navbar */
+    margin: 120px auto 40px; 
     background: #fff;
     padding: 30px;
     border-radius: 12px;
@@ -182,7 +182,7 @@ textarea {
     min-height: 120px;
     resize: vertical;
 }
-.btn-create {
+.btn-create{
     display: block;
     width: 100%;
     padding: 14px;
@@ -346,4 +346,11 @@ table th {
 @keyframes fadeIn {
     from {opacity: 0; transform: translateY(10px);}
     to {opacity: 1; transform: translateY(0);}
+}
+.to{
+    padding: 5%;
+    text-decoration: none;
+}
+.to:hover{
+    text-decoration: underline;
 }

@@ -5,7 +5,7 @@ ini_set("display_errors", 1);
 $conn = new mysqli("localhost", "root", "", "recipebook");
 if ($conn->connect_error) die("DB Connection Failed");
 
-// ---------- API MODE (AJAX) ----------
+// API MODE (AJAX) 
 if (isset($_GET['ajax'])) {
 
     $q = isset($_GET['q']) ? trim($_GET['q']) : "";
@@ -44,14 +44,10 @@ if (isset($_GET['ajax'])) {
 <div class="search-container">
 <div class="search-box">
   <span class="icon-left">🔍</span>
-
   <input id="search" placeholder="Search recipes...">
-
   <span class="icon-clear" id="clearBtn">✕</span>
-  </div>
-
-  <div id="results" class="panel" style="display:none;"></div>
-
+</div>
+<div id="results" class="panel" style="display:none;"></div>
   <p id="count" class="count"></p>
 </div>
 
@@ -128,7 +124,6 @@ clearBtn.addEventListener("click", () => {
   input.focus();
 });
 </script>
-
 </body>
 </html>
     

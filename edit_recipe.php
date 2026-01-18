@@ -10,35 +10,34 @@ if (!isset($_SESSION["user_id"])) {
 }
 
 $conn = new mysqli("localhost", "root", "", "recipebook");
-if ($conn->connect_error) die("DB Error: " . $conn->connect_error);
+if ($conn->connect_error) die("DB Error");
 
 $user_id = $_SESSION["user_id"];
 $role    = $_SESSION["role"] ?? "user";
 
 $success = "";
-$error = "";
+$error   = "";
 
 // recipe id required
 if (!isset($_GET['id'])) die("No recipe selected.");
-
 $id = (int) $_GET['id'];
 
-// where user came from
+// back link
 $from = $_GET['from'] ?? "profile";
 $back_link = ($from === "admin") ? "admin_dashboard.php" : "profile.php";
 
 // fetch recipe
-$stmt = $conn->prepare("SELECT * FROM recipes WHERE id = ?");
+$stmt = $conn->prepare("SELECT * FROM recipes WHERE id=?");
 $stmt->bind_param("i", $id);
 $stmt->execute();
 $recipe = $stmt->get_result()->fetch_assoc();
 $stmt->close();
 
-if (!$recipe) die("Recipe not found.");
+if (!$recipe) die("Recipe not found");
 
-// ONLY ADMIN OR OWNER CAN EDIT
+// permission
 if ($role !== "admin" && $recipe["user_id"] != $user_id) {
-    die("You are not allowed to edit this recipe.");
+    die("Not allowed");
 }
 
 // UPDATE
@@ -47,51 +46,45 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $title       = $_POST['title'];
     $category    = $_POST['category'];
     $description = $_POST['description'];
+    $video_url   = trim($_POST['video_url']);
 
-    // user cannot change status
     $status = ($role === "admin") ? $_POST["status"] : $recipe["status"];
-
-    // start with old image
-    $image = $recipe["image"];
+    $image  = $recipe["image"];
 
     // image upload
     if (!empty($_FILES['image']['name'])) {
-
-        // keep only filename
         $file = time() . "_" . basename($_FILES['image']['name']);
         $path = "uploads/" . $file;
-
         if (move_uploaded_file($_FILES['image']['tmp_name'], $path)) {
-            $image = "uploads/" . $file; // store path
+            $image = $path;
         }
     }
 
-    // PREPARED UPDATE
     if ($role === "admin") {
-        $sql = "
+        $stmt = $conn->prepare("
             UPDATE recipes 
-            SET title=?, category=?, description=?, status=?, image=?
+            SET title=?, category=?, description=?, video_url=?, status=?, image=?
             WHERE id=?
-        ";
-        $stmt = $conn->prepare($sql);
-        $stmt->bind_param("sssssi", $title, $category, $description, $status, $image, $id);
+        ");
+        $stmt->bind_param("ssssssi",
+            $title, $category, $description, $video_url, $status, $image, $id
+        );
     } else {
-        $sql = "
+        $stmt = $conn->prepare("
             UPDATE recipes 
-            SET title=?, category=?, description=?, image=?
+            SET title=?, category=?, description=?, video_url=?, image=?
             WHERE id=? AND user_id=?
-        ";
-        
-        $stmt = $conn->prepare($sql);
-        $stmt->bind_param("ssssii", $title, $category, $description, $image, $id, $user_id);
+        ");
+        $stmt->bind_param("ssssiii",
+            $title, $category, $description, $video_url, $image, $id, $user_id
+        );
     }
 
     if ($stmt->execute()) {
-        $success = "Recipe updated successfully!";
+        $success = "✔ Recipe updated successfully!";
     } else {
-        $error = "Failed to update recipe.";
+        $error = "❌ Update failed";
     }
-
     $stmt->close();
 }
 ?>
@@ -100,20 +93,19 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 <head>
     <title>Edit Recipe</title>
     <link rel="stylesheet" href="footer.css">
-    <link rel="stylesheet" href="edit_recipe.css">
 </head>
 
 <body>
 
 <?php include "navbar.php"; ?>
 
-<div class="admin-contain">
-    <main class="content">
+<div class="edit-recipe-page">
+    <main class="edit-recipe-content">
 
         <h1>Edit Recipe</h1>
 
-        <?php if ($success): ?><p style="color:green;"><?= $success ?></p><?php endif; ?>
-        <?php if ($error): ?><p style="color:red;"><?= $error ?></p><?php endif; ?>
+        <?php if ($success): ?><div class="success"><?= $success ?></div><?php endif; ?>
+        <?php if ($error): ?><div class="error"><?= $error ?></div><?php endif; ?>
 
         <form method="POST" enctype="multipart/form-data">
 
@@ -126,6 +118,24 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             <label>Description</label>
             <textarea name="description" rows="4" required><?= htmlspecialchars($recipe['description']) ?></textarea>
 
+            <label>Current Image</label>
+            <?php if ($recipe['image']): ?>
+                <img src="<?= $recipe['image'] ?>">
+            <?php endif; ?>
+
+            <label>Upload New Image</label>
+            <input type="file" name="image">
+
+            <label>Video URL (YouTube embed)</label>
+            <input type="text" name="video_url"
+                   value="<?= htmlspecialchars($recipe['video_url'] ?? '') ?>"
+                   placeholder="https://www.youtube.com/embed/XXXX">
+
+            <?php if (!empty($recipe['video_url'])): ?>
+                <iframe src="<?= htmlspecialchars($recipe['video_url']) ?>"
+                        width="100%" height="250" allowfullscreen></iframe>
+            <?php endif; ?>
+
             <?php if ($role === "admin"): ?>
                 <label>Status</label>
                 <select name="status">
@@ -134,19 +144,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 </select>
             <?php endif; ?>
 
-            <label>Current Image</label><br>
-
-            <?php if ($recipe['image']): ?>
-                <img src="<?= $recipe['image'] ?>" width="180"><br><br>
-            <?php endif; ?>
-
-            <label>Upload New Image (optional)</label>
-            <input type="file" name="image">
-
-            <br><br>
-
             <button type="submit">Save</button>
-            <a href="<?= $back_link ?>">Back</a>
+            <button id = "back"><a href="<?= $back_link ?>">Back</a></button>
 
         </form>
 

@@ -53,10 +53,10 @@
         <div class="sub6">
             <h3 class="hero-title4">Save recipes from anywhere, instantly</h3>
             <p>Save, add, customize and organize recipes across all your devices.</p>
-            <p>Save from your phone or computer, share from social media.</p>
+            <p>Save from your phone or computer.</p>
         </div>
         <div class="sub5">
-            <img class="img3" src="https://www.flavorish.ai/_next/static/media/features.fe323f07.png">
+            <img class="img3" src="https://www.flavorish.ai/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fphones.42cac999.png&w=640&q=100&dpl=dpl_AWXp36JyebfWprMCq693Rh8QzALa">
         </div>
     </div>
 
@@ -72,19 +72,28 @@
         </div>
     </div>
 
-    <div class="div6">
-        <div class="sub10">
-            <h1 class="title">RecipeBook</h1>
-            <h3>Your ultimate kitchen companion.</h3>
+<div class="div6">
+    <div class="sub10">
+        <h1 class="title">RecipeBook</h1>
+        <h3>Your ultimate kitchen companion.</h3>
+
+        <?php if (!isset($_SESSION['user_id'])): ?>
             <a href="login.php">
                 <button class="button1">GET STARTED</button>
             </a>
             <p class="p1">RecipeBook is free to try — jump in today!</p>
-        </div>
-        <div class="sub9">
-            <img class="img5" src="https://htmlburger.com/blog/wp-content/uploads/2023/03/Food-App-Design-Foodei-by-Ali-Husni.gif">
-        </div>
+        <?php else: ?>
+            <p class="p1">Welcome back! 👋 Start cooking your favorite recipes.</p>
+        <?php endif; ?>
+
     </div>
+
+    <div class="sub9">
+        <img class="img5"
+             src="https://htmlburger.com/blog/wp-content/uploads/2023/03/Food-App-Design-Foodei-by-Ali-Husni.gif"
+             alt="Food App Animation">
+    </div>
+</div>
 </div>
 <?php include 'footer.php'; ?>
 

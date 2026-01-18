@@ -14,14 +14,19 @@ if ($conn->connect_error) die("DB Error");
 $message = "";
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    $title = $_POST["title"];
-    $category = $_POST["category"];
+
+    $title       = $_POST["title"];
+    $category    = $_POST["category"];
     $description = $_POST["description"];
     $ingredients = $_POST["ingredients"];
-    $steps = $_POST["steps"];
-    $nutrition = $_POST["nutrition"];
-    $video_url = $_POST["video_url"];
-    $user_id = $_SESSION["user_id"];
+    $steps       = $_POST["steps"];
+    $nutrition   = $_POST["nutrition"];
+    $video_url   = $_POST["video_url"];
+    $user_id     = $_SESSION["user_id"];
+    $role        = $_SESSION["role"];
+
+    // ✅ STATUS LOGIC
+    $status = ($role === "admin") ? "approved" : "pending";
 
     // image upload
     $image_path = "";
@@ -32,21 +37,38 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         move_uploaded_file($_FILES["image"]["tmp_name"], $image_path);
     }
 
-    // insert query with pending status
+    // insert query
     $stmt = $conn->prepare("
         INSERT INTO recipes 
         (title, category, image, description, ingredients, steps, video_url, nutrition, status, user_id)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, 'pending', ?)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
     ");
+
     $stmt->bind_param(
-        "ssssssssi",
-        $title, $category, $image_path, $description, $ingredients, $steps, $video_url, $nutrition, $user_id
+        "sssssssssi",
+        $title,
+        $category,
+        $image_path,
+        $description,
+        $ingredients,
+        $steps,
+        $video_url,
+        $nutrition,
+        $status,
+        $user_id
     );
+
     if ($stmt->execute()) {
-        $message = "✔ Recipe submitted! Waiting for admin approval.";
+        if ($role === "admin") {
+            $message = "✔ Recipe published successfully!";
+        } else {
+            $message = "✔ Recipe submitted! Waiting for admin approval.";
+        }
     } else {
         $message = "❌ Error saving recipe.";
     }
+
+    $stmt->close();
 }
 ?>
 
@@ -57,14 +79,20 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     <link rel="stylesheet" href="profile.css">
 </head>
 <body>
+
 <?php include "navbar.php"; ?>
+
 <div class="admin-container">
     <h1>Create New Recipe</h1>
+
     <?php if ($message): ?>
-        <p style="color: green; font-weight: bold;"><?= $message ?></p>
+        <p style="color: green; font-weight: bold;">
+            <?= htmlspecialchars($message) ?>
+        </p>
     <?php endif; ?>
 
     <form method="POST" enctype="multipart/form-data" class="create-form">
+
         <label>Recipe Title</label>
         <input type="text" name="title" required>
 
@@ -95,9 +123,13 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         <label>Video URL (optional)</label>
         <input type="text" name="video_url">
 
-        <button type="submit" class="btn-create">Submit for Approval</button>
+        <button type="submit" class="btn-create">
+            <?= ($_SESSION["role"] === "admin") ? "Publish Recipe" : "Submit for Approval" ?>
+        </button>
+
     </form>
 </div>
+
 <?php include "footer.php"; ?>
 </body>
 </html>
